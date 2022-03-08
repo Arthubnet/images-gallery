@@ -10,7 +10,10 @@ const Header = (props) => {
   return (
     <Navbar style={navbarStyle} variant="light">
       <Container>
-        <Logo style={{ maxWidth: "25rem", maxHeight: "4rem" }} />
+        <Logo
+          alt={props.title}
+          style={{ maxWidth: "25rem", maxHeight: "4rem" }}
+        />
       </Container>
     </Navbar>
   );
