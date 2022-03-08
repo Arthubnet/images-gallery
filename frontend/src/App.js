@@ -43,7 +43,6 @@ function App() {
           ))}
         </Row>
       </Container>
-      ))}
     </div>
   );
 }
