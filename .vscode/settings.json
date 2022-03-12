@@ -1,3 +1,8 @@
 {
-  "eslint.validate": ["html", "javascript", "javascriptreact"]
+  "eslint.validate": ["html", "javascript", "javascriptreact"],
+
+  "python.linting.pydocstyleEnabled": true,
+  "python.linting.pycodestyleArgs": ["--max-line-length=88"],
+  "python.linting.pylintEnabled": true,
+  "python.formatting.provider": "black"
 }

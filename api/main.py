@@ -1,4 +1,4 @@
-import os
+import os 
 import requests
 from flask import Flask, request
 from dotenv import load_dotenv
@@ -21,6 +21,7 @@ app.config["DEBUG"] = DEBUG
 
 @app.route('/new-image')
 def new_image():
+    """This function does something important"""
     word = request.args.get("query")
     headers = {
         "Accept-Version": "v1",
@@ -34,3 +35,4 @@ def new_image():
 
 if __name__ =="__main__":
     app.run(host='0.0.0.0', port=5050)
+    
