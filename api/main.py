@@ -1,5 +1,6 @@
 from crypt import methods
-import os 
+import os
+from tkinter import image_names 
 import requests
 from flask import Flask, request, jsonify
 from dotenv import load_dotenv
@@ -25,7 +26,6 @@ app.config["DEBUG"] = DEBUG
 
 @app.route('/new-image')
 def new_image():
-    """This function does something important"""
     word = request.args.get("query")
     headers = {
         "Accept-Version": "v1",
@@ -39,7 +39,6 @@ def new_image():
 
 @app.route('/images', methods=["GET", "POST"])
 def images():
-    """Function for images page that will talk to DB and have two methods GET & POST"""
     if request.method == "GET":
         #read images from the database
         images = images_collection.find({})
@@ -51,6 +50,18 @@ def images():
         result = images_collection.insert_one(image)
         inserted_id = result.inserted_id
         return {"inserted_id": inserted_id}
+
+@app.route('/images/<image_id>', methods=["DELETE"])
+def image(image_id):
+    if request.method == "DELETE":
+        #delete image from the database
+        result = images_collection.delete_one({"_id": image_id})
+        if not result:
+            return {"error": "Image wasn't deleted. Please try again"}, 500
+        if result and not result.deleted_count:
+            return {"error": "Image not found"}, 404
+        return {"deleted_id": image_id}
+
 
 if __name__ =="__main__":
     app.run(host='0.0.0.0', port=5050)
