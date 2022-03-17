@@ -10,7 +10,6 @@ const Welcome = () => (
     <a
       className="btn btn-primary btn-lg my-4"
       href="https://unsplash.com"
-      target="_blank"
       role="button"
     >
       Learn more
