@@ -20,5 +20,5 @@ def insert_test_document():
     """Created database with collection in it, and added some info inside of it"""
     db = mongo_client.test
     test_collection = db.test_collection
-    rest = test_collection.insert_one({"name": "Lena", "student": True })
-    print(rest)
+    res = test_collection.insert_one({"name": "Lena", "student": True })
+    print(res)

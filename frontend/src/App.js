@@ -13,7 +13,7 @@ const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5050";
 function App() {
   const [word, setWord] = useState("");
   const [images, setImages] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const getSavedImages = async () => {
     try {

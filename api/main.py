@@ -1,8 +1,6 @@
-from crypt import methods
 import os
-from tkinter import image_names 
 import requests
-from flask import Flask, request, jsonify
+from flask import Flask, json, request, jsonify
 from dotenv import load_dotenv
 from flask_cors import CORS
 from mongo_client import mongo_client
