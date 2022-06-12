@@ -1,7 +1,7 @@
 version: "3"
 services:
   frontend:
-    restart: always
+    restart: on-failure
     build: ./frontend
     ports:
       - "3000:3000"
@@ -11,7 +11,7 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
   api:
-    restart: always
+    restart: on-failure
     build: ./api
     ports:
       - "5050:5050"
@@ -20,7 +20,7 @@ services:
   mongo:
     image: mongo
     container_name: mongo
-    restart: always
+    restart: on-failure
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
@@ -28,7 +28,7 @@ services:
       - mongodb_data:/data/db
   mongo-express:
     image: mongo-express
-    restart: always
+    restart: on-failure
     ports:
       - 8081:8081
     environment:

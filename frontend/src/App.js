@@ -37,6 +37,7 @@ function App() {
 
     try {
       const res = await axios.get(`${API_URL}/new-image?query=${word}`);
+      console.log(res, res.data);
       setImages([{ ...res.data, title: word }, ...images]);
       toast.info(`New image ${word.toUpperCase()} was found`);
     } catch (error) {
@@ -45,6 +46,10 @@ function App() {
     }
 
     setWord("");
+  };
+
+  const handleRemoveImage = (id) => {
+    setImages(images.filter((image) => image.id !== id));
   };
 
   const handleDeleteImage = async (id) => {
@@ -56,13 +61,11 @@ function App() {
       }
       toast.warn(`Image ${title.toUpperCase()} was deleted`);
       // toast.warn(`Image ${image.find((i) => i.id === id).title.toUpperCase()} was deleted`);  better than if way
-      if (res.data?.deleted_id) {
-        setImages(images.filter((image) => image.id !== id));
-      }
     } catch (error) {
       console.log(error);
       toast.error(error.message);
     }
+    setImages(images.filter((image) => image.id !== id));
   };
 
   const handleSaveImage = async (id) => {
@@ -72,7 +75,7 @@ function App() {
     try {
       const res = await axios.post(`${API_URL}/images`, imageToBeSaved);
       if (res.data?.inserted_id) {
-        toast.info(`New image ${imageToBeSaved.toUpperCase()} was saved`);
+        toast.info(`New image ${imageToBeSaved.title.toUpperCase()} was saved`);
         setImages(
           images.map((image) =>
             image.id === id ? { ...image, saved: true } : image
@@ -89,7 +92,7 @@ function App() {
     <div>
       <Header title="Images Gallery" />
       {loading ? (
-        <Spinner />
+        <Spinner abc />
       ) : (
         <>
           <Search
@@ -105,6 +108,7 @@ function App() {
                     <ImageCard
                       image={image}
                       deleteImage={handleDeleteImage}
+                      removeImage={handleRemoveImage}
                       saveImage={handleSaveImage}
                     />
                   </Col>
