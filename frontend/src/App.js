@@ -60,7 +60,6 @@ function App() {
         if (i.id === res.data.deleted_id) title = i.title;
       }
       toast.warn(`Image ${title.toUpperCase()} was deleted`);
-      // toast.warn(`Image ${image.find((i) => i.id === id).title.toUpperCase()} was deleted`);  better than if way
     } catch (error) {
       console.log(error);
       toast.error(error.message);
